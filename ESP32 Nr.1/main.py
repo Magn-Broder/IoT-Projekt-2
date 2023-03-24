@@ -1,9 +1,11 @@
 from time import sleep
-from machine import ADC, Pin, UART
+from machine import ADC, Pin, SPI
 import neopixel
 
-# Variabler til UART-forbindelse
-uart = UART(2, baudrate=115200, tx=1, rx=3)
+# Variabler til SPI-forbindelse
+spi = SPI(1, baudrate=10000000, polarity=0, phase=0)  # initialize SPI bus
+cs = Pin(5, Pin.OUT)  # set chip select pin
+cs.on() 
 
 # Set up the MQ135 sensor
 RL_VALUE = 10
@@ -46,18 +48,21 @@ def read_mq():
 np_off()
 
 while True:
-    co2_ppm_read = read_mq()
-    print("CO2 Level: {} ppm".format(co2_ppm_read))
+    co2_ppm = read_mq()
+    print(f"CO2 Level: {co2_ppm} ppm")
     sleep(1)
     
-    my_bytes = bytes([co2_ppm_read])
     
-    UART.write(my_bytes)
+    value = 42  # integer to send
+    cs.off()  # select chip
+    spi.write(bytearray([value]))  # send integer as a single byte
+    cs.on()  # deselect chip
+    sleep(1)  # wait for 1 second before sending another integer
     
-    if co2_ppm_read <= 400:
+    if co2_ppm <= 400:
         np_Green()
         
-    elif co2_ppm_read <= 600:
+    elif co2_ppm <= 600:
         np_Yellow()
     
     else:
