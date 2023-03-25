@@ -24,17 +24,6 @@ np = neopixel.NeoPixel(Pin(p), n)
 adc = ADC(Pin(36))
 adc.atten(ADC.ATTN_11DB)
 
-# Funktion til WIFI
-# def do_connect(): 
-#     sta_if = network.WLAN(network.STA_IF)
-#     if not sta_if.isconnected():
-#         print('connecting to network...')
-#         sta_if.active(True)
-#         sta_if.connect('ssid','passphrase')
-#         while not sta_if.isconnected():
-#             pass
-#     print('network config:', sta_if.ifconfig())
-
 # Neopixel funktioner
 def np_off():
     for i in range(12):
@@ -88,9 +77,6 @@ def mqtt_publish_til_RPI():
         client.publish(TOPIC, msg)  # Publish sensor data to MQTT topic
         print(msg)
         sleep(300)
-
-# Opret forbindelse til WIFI
-# do_connect()
 
 # Opret forbindelse til MQTT broker
 client.connect()   
