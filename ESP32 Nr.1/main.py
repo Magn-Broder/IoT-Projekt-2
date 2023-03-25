@@ -25,15 +25,15 @@ adc = ADC(Pin(36))
 adc.atten(ADC.ATTN_11DB)
 
 # Funktion til WIFI
-def do_connect(): 
-    sta_if = network.WLAN(network.STA_IF)
-    if not sta_if.isconnected():
-        print('connecting to network...')
-        sta_if.active(True)
-        sta_if.connect('ssid','passphrase')
-        while not sta_if.isconnected():
-            pass
-    print('network config:', sta_if.ifconfig())
+# def do_connect(): 
+#     sta_if = network.WLAN(network.STA_IF)
+#     if not sta_if.isconnected():
+#         print('connecting to network...')
+#         sta_if.active(True)
+#         sta_if.connect('ssid','passphrase')
+#         while not sta_if.isconnected():
+#             pass
+#     print('network config:', sta_if.ifconfig())
 
 # Neopixel funktioner
 def np_off():
@@ -90,7 +90,7 @@ def mqtt_publish_til_RPI():
         sleep(300)
 
 # Opret forbindelse til WIFI
-do_connect()
+# do_connect()
 
 # Opret forbindelse til MQTT broker
 client.connect()   
