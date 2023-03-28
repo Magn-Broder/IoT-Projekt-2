@@ -60,10 +60,10 @@ def sensor_indikator():
         print(f"CO2 Level: {co2_ppm} ppm")
         sleep(1)
         
-        if co2_ppm <= 400:
+        if co2_ppm <= 600:
             np_Green()
             
-        elif co2_ppm <= 600:
+        elif co2_ppm <= 800:
             np_Yellow()
         
         else:
