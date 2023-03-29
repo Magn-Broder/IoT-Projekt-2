@@ -49,8 +49,7 @@ def np_Red():
 def read_mq():
     rs = adc.read() / 4095 * 3.3 / (5.0 - adc.read() / 4095 * 3.3) * RL_VALUE
     ratio = rs / RO_CLEAN_AIR_FACTOR
-    co2_ppm = round(1.8
-                    * pow(ratio, -1.769034857))
+    co2_ppm = round(1.8 * pow(ratio, -1.769034857))
     return co2_ppm
 
 # Funktion til tråd 1
