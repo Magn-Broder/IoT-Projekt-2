@@ -1,4 +1,4 @@
-#!/home/magn3442/Projects/IoT2 python
+#!/home/magn3442/Project/IoT2 python
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 import io
@@ -70,7 +70,7 @@ def my_form_post():
 
 @app.route('/plot/ppm')
 def plot_ppm():
-	times, ppms = get_hist_data(num_samples)
+	time, ppms = get_hist_data(num_samples)
 	ys = ppms
 	fig = Figure()
 	axis = fig.add_subplot(1, 1, 1)
