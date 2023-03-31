@@ -1,4 +1,4 @@
-#!/home/magn3442/Projects/IoT2 python
+#!/home/magn3442/Project/IoT2 python3
 import paho.mqtt.client as mqtt
 import sqlite3
 import time
@@ -6,7 +6,7 @@ import time
 db_name = 'sensor_data.db'
 
 # log sensor data on database
-def log_data (ppms):
+def log_data(ppms):
 
 	conn=sqlite3.connect(db_name)
 	curs=conn.cursor()
@@ -33,6 +33,9 @@ client = mqtt.Client()
 client.on_connect = on_connect  # Specify on_connect callback
 client.on_message = on_message  # Specify on_message callback
 client.connect('localhost', 1883, 60)  # Connect to MQTT broker (also running on Pi).
+
+# Processes MQTT network traffic, callbacks and reconnections. (Blocking)
+client.loop_forever()
 
 # Processes MQTT network traffic, callbacks and reconnections. (Blocking)
 client.loop_forever()
